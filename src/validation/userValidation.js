@@ -115,12 +115,12 @@ export const UserValidationSchema = yup.object({
     .date()
     .nullable()
     .test("required", "Date is required", (value) => value !== null),
-  guestSignature: yup
-    .array()
-    .required("Guest signature is required")
-    .test("not-empty", "Signature is required", (value) => {
-      return value && value.length > 0;
-    }),
+  // guestSignature: yup
+  //   .array()
+  //   .required("Guest signature is required")
+  //   .test("not-empty", "Signature is required", (value) => {
+  //     return value && value.length > 0;
+  //   }),
   rooms: yup.object({
     types: yup
       .object({
