@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* CalendarInput CSS */
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container input {
+  width: 100% !important;
+}
+
+.signature-canvas {
+  touch-action: none;
+}
