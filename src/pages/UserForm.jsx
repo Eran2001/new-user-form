@@ -498,7 +498,6 @@ const UserForm = () => {
                 <div className="grid lg:grid-cols-2 gap-6 mt-6">
                   <TextInput
                     label="Passport No/ Identification No"
-                    type="number"
                     name="user_id_number"
                     register={register}
                     errors={errors}
