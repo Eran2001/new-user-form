@@ -15,13 +15,7 @@ export const UserValidationSchema = yup.object({
       /^(?:\+94|94|0)?7[01245678]\d{7}$/,
       "Enter a valid Sri Lankan mobile number"
     ),
-  user_id_number: yup
-    .string()
-    .required("Identification is required!")
-    .matches(
-      /^(?:\d{9}[VXvx]|\d{12}|[A-Z]{1,2}\d{6,7})$/,
-      "Enter a valid NIC or Passport number"
-    ),
+  user_id_number: yup.string().required("Identification is required!"),
   description: yup.string(),
   terms: yup.bool().oneOf([true], "You must accept the terms"),
   checkInDate: yup
