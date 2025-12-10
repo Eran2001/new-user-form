@@ -41,9 +41,7 @@ const PrintableForm = ({ data }) => (
       ATTERIYA CHILL - ARUGAMBE (ATTERIYA GREEN PVT LTD)
     </p>
 
-    {/* Main Grid Layout */}
     <div className="grid grid-cols-3 gap-x-4 gap-y-1 text-sm">
-      {/* Column 1: Guest Info */}
       <div>
         <h3 className="font-bold border-b mb-1">Guest Information</h3>
         <div>
@@ -69,7 +67,6 @@ const PrintableForm = ({ data }) => (
         </div>
       </div>
 
-      {/* Column 2: Room & Guest Info */}
       <div>
         <h3 className="font-bold border-b mb-1">Room & Guest Details</h3>
         <div className="mb-2">
@@ -97,7 +94,6 @@ const PrintableForm = ({ data }) => (
         </div>
       </div>
 
-      {/* Column 3: Payment & Conditions */}
       <div>
         <h3 className="font-bold border-b mb-1">Payment Information</h3>
         <div>
@@ -137,7 +133,6 @@ const PrintableForm = ({ data }) => (
       </div>
     </div>
 
-    {/* Footer */}
     <div className="mt-4 pt-2 border-t text-xs">
       <div>
         <strong>Certification Date:</strong>{" "}
@@ -207,7 +202,6 @@ const UserForm = () => {
         foodPayment: false,
       },
       certificationDate: null,
-      // guestSignature: null,
     },
   });
 
@@ -216,26 +210,21 @@ const UserForm = () => {
   const generatePDF = (data) => {
     const doc = new jsPDF({ unit: "mm", format: "a4" });
 
-    // Colors
     const primaryBlue = "#1e40af";
     const secondaryBlue = "#3b82f6";
     const bgGray = "#f8fafc";
     const textGray = "#475569";
     const borderGray = "#e2e8f0";
 
-    // Fonts & Margins
     const marginX = 15;
     const pageWidth = doc.internal.pageSize.width;
     const contentWidth = pageWidth - 2 * marginX;
     let y = 15;
 
-    // Header
     const addHeader = () => {
-      // Logo placeholder (blue rectangle)
       doc.setFillColor(primaryBlue);
       doc.roundedRect(marginX, y, 25, 25, 2, 2, "F");
 
-      // Title & Subtitle
       doc.setFontSize(24);
       doc.setTextColor(primaryBlue);
       doc.setFont(undefined, "bold");
@@ -247,7 +236,6 @@ const UserForm = () => {
       doc.text("ATTERIYA CHILL - ARUGAMBE", marginX + 35, y + 18);
       doc.text("(ATTERIYA GREEN PVT LTD)", marginX + 35, y + 24);
 
-      // Header separator
       doc.setDrawColor(borderGray);
       doc.setLineWidth(0.5);
       doc.line(marginX, y + 32, pageWidth - marginX, y + 32);
@@ -255,7 +243,6 @@ const UserForm = () => {
       return y + 40;
     };
 
-    // Section Header
     const addSectionHeader = (title, y) => {
       doc.setFillColor(secondaryBlue);
       doc.setTextColor(255, 255, 255);
@@ -266,7 +253,6 @@ const UserForm = () => {
       return y + 12;
     };
 
-    // Guest Information Section
     const addGuestInfo = (y) => {
       y = addSectionHeader("GUEST INFORMATION", y);
 
@@ -320,7 +306,6 @@ const UserForm = () => {
       return y + 50;
     };
 
-    // Room Details Section
     const addRoomDetails = (y) => {
       y = addSectionHeader("ROOM & GUEST DETAILS", y);
 
@@ -330,7 +315,6 @@ const UserForm = () => {
       doc.setFontSize(10);
       doc.setTextColor(textGray);
 
-      // Room Types
       let roomTypes = Object.entries(data.rooms.types)
         .filter(([, v]) => v)
         .map(
@@ -347,7 +331,6 @@ const UserForm = () => {
         doc.text(String(type), marginX + 10, y + 16 + i * 6);
       });
 
-      // Guest Count
       doc.setFont(undefined, "bold");
       doc.text("Guest Count:", marginX + 5, y + 35);
       doc.setFont(undefined, "normal");
@@ -362,7 +345,6 @@ const UserForm = () => {
       return y;
     };
 
-    // Payment Information Section
     const addPaymentInfo = (y) => {
       doc.setFillColor(bgGray);
       doc.roundedRect(
@@ -404,7 +386,6 @@ const UserForm = () => {
       return y + 50;
     };
 
-    // Footer
     const addFooter = (y) => {
       doc.setDrawColor(borderGray);
       doc.setLineWidth(0.5);
@@ -413,7 +394,6 @@ const UserForm = () => {
       doc.setFontSize(10);
       doc.setTextColor(textGray);
 
-      // Certification Date
       doc.text("Certification Date:", marginX, y + 10);
       doc.text(
         data.certificationDate
@@ -423,7 +403,6 @@ const UserForm = () => {
         y + 10
       );
 
-      // Signature
       doc.text("Signature:", marginX + contentWidth / 2, y + 10);
       doc.line(
         marginX + contentWidth / 2 + 20,
@@ -432,7 +411,6 @@ const UserForm = () => {
         y + 10
       );
 
-      // Generated timestamp
       doc.setFontSize(8);
       doc.text(
         `Generated: ${new Date().toLocaleString()}`,
@@ -442,14 +420,12 @@ const UserForm = () => {
       );
     };
 
-    // Generate the PDF
     y = addHeader();
     y = addGuestInfo(y);
     y = addRoomDetails(y);
     y = addPaymentInfo(y);
     addFooter(y + 10);
 
-    // Save the PDF
     doc.save("guest-registration.pdf");
   };
 
