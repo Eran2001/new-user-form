@@ -79,7 +79,6 @@ export const UserValidationSchema = yup.object({
       .date()
       .typeError("Date is required")
       .required("Date is required")
-      // Either remove .nullable() completely, or use this approach:
       .nullable()
       .test("required", "Date is required", (value) => value !== null),
   }),
@@ -109,12 +108,6 @@ export const UserValidationSchema = yup.object({
     .date()
     .nullable()
     .test("required", "Date is required", (value) => value !== null),
-  // guestSignature: yup
-  //   .array()
-  //   .required("Guest signature is required")
-  //   .test("not-empty", "Signature is required", (value) => {
-  //     return value && value.length > 0;
-  //   }),
   rooms: yup.object({
     types: yup
       .object({
