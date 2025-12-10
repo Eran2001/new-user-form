@@ -1,5 +1,4 @@
 @media print {
-  /* Hide everything except the print component */
   body > *:not(.print-view) {
     display: none !important;
   }
