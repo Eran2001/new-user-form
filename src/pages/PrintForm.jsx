@@ -57,7 +57,6 @@ const PrintForm = ({ data }) => {
               <span>{data.rooms.standardDoubleWithFanCount}</span>
             </div>
           )}
-          {/* Add other room types similarly */}
         </div>
       </div>
 
